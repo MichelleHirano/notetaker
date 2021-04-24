@@ -66,8 +66,17 @@ app.get('*', (req, res) => {
          }
     };
 
+//app post
 
+app.post('/api/notes', (req, res) => {
+    const newNote = createNewNote(req.body, allNotes);
+    res.json(newNote);
+});
 
+app.delete('/api/notes/:id', (req, res) => {
+    deleteNote(req.params.id, allNotes);
+    res.json(true);
+});
 
 
 //app listener
