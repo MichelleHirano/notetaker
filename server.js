@@ -37,6 +37,12 @@ app.get('*', (req, res) => {
 
         if(notesArray.length === 0)
         notesArray.push(0);
+
+        body.id = notesArray[0];
+        notesArray[0]++;
+
+        notesArray.push(newNote);
+
     }
 
 
@@ -47,6 +53,6 @@ app.get('*', (req, res) => {
 
 
 
-app.listen(3001, () => {
-    console.log(`API server now on port 3001!`);
-  });
+    app.listen(PORT, () => {
+        console.log(`API server now on port ${PORT}!`);
+      });
