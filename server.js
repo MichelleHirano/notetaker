@@ -31,28 +31,46 @@ app.get('*', (req, res) => {
     //create new note
 
     function createNewNote(body, notesArray){
-        const newNote = body;
-        if (!Array.isArray(notesArray))
-        notesArray = [];
+            const newNote = body;
+            if (!Array.isArray(notesArray))
+            notesArray = [];
 
-        if(notesArray.length === 0)
-        notesArray.push(0);
+            if(notesArray.length === 0)
+            notesArray.push(0);
 
-        body.id = notesArray[0];
-        notesArray[0]++;
+            body.id = notesArray[0];
+            notesArray[0]++;
 
-        notesArray.push(newNote);
-
+            notesArray.push(newNote);
+            fs.writeFileSync(
+                path.join(__dirname, './db/db.json'),
+                JSON.stringify(notesArray, null, 2)
+            );
+        return newNote;
     }
 
+    //delete note
+
+    function deleteNote (id, notesArray){
+        for(let i=0; i < notesArray.length; i++){
+            let note = notesArray[i];
+
+            if (note.id === id){
+                notesArray.splice(i, 1);
+                fs.writeFileSync(
+                    path.join(__dirname, './db/db.json'),
+                    JSON.stringify(notesArray, null, 2)
+                );
+                break;
+             }
+         }
+    };
 
 
 
 
 
-
-
-
+//app listener
     app.listen(PORT, () => {
         console.log(`API server now on port ${PORT}!`);
       });
