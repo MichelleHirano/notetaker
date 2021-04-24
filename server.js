@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 //app.get
 app.get('/api/notes', (req, res) =>{
-    res.json(allNotes);
+    res.json(allNotes.slice(1));
 });
 
 app.get('/', (req, res) => {
@@ -29,8 +29,6 @@ app.get('/notes', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
-
-//functions
 
     //create new note
 
@@ -51,7 +49,14 @@ app.get('*', (req, res) => {
                 JSON.stringify(notesArray, null, 2)
             );
         return newNote;
-    }
+    };
+
+    //app post
+
+    app.post('/api/notes', (req, res) => {
+        const newNote = createNewNote(req.body, allNotes);
+        res.json(newNote);
+    });
 
     //delete note
 
@@ -70,17 +75,12 @@ app.get('*', (req, res) => {
          }
     };
 
-//app post
 
-app.post('/api/notes', (req, res) => {
-    const newNote = createNewNote(req.body, allNotes);
-    res.json(newNote);
-});
-
-app.delete('/api/notes/:id', (req, res) => {
-    deleteNote(req.params.id, allNotes);
-    res.json(true);
-});
+    //app.delete
+    app.delete('/api/notes/:id', (req, res) => {
+        deleteNote(req.params.id, allNotes);
+        res.json(true);
+    });
 
 
 //app listener
