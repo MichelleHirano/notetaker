@@ -1,5 +1,5 @@
 [
-  null,
+  2,
   {
     "title": "hello",
     "text": "123",
@@ -9,5 +9,15 @@
         "text": "Test text"
       }
     ]
+  },
+  {
+    "title": "test",
+    "text": "test 23 ",
+    "id": null
+  },
+  {
+    "title": "This is a test note",
+    "text": "And here is some sample text!",
+    "id": 1
   }
 ]
