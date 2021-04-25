@@ -1,16 +1,3 @@
 [
-  null,
-  {
-    "title": "title",
-    "text": "hello",
-    "id": {
-      "title": "Test Title",
-      "text": "Test text"
-    }
-  },
-  {
-    "title": "hello",
-    "text": "123",
-    "id": null
-  }
+  [{"title":"Test Title","text":"Test text"}]
 ]
